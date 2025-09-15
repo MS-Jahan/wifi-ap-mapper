@@ -10,18 +10,18 @@ const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div 
-        className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center" 
+        className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-start sm:items-center overflow-y-auto" 
         onClick={onClose}
         aria-modal="true"
         role="dialog"
     >
       <div 
-        className="bg-card dark:bg-dark-card rounded-lg shadow-xl p-6 w-full max-w-2xl m-4 relative border border-border dark:border-dark-border"
+        className="bg-card dark:bg-dark-card rounded-lg shadow-xl p-6 w-full max-w-2xl m-4 my-8 sm:my-4 relative border border-border dark:border-dark-border max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
       >
         <button 
             onClick={onClose}
-            className="absolute top-3 right-3 p-1 rounded-full text-muted-foreground hover:bg-accent dark:hover:bg-dark-accent"
+            className="absolute top-3 right-3 p-2 rounded-full text-muted-foreground hover:bg-accent dark:hover:bg-dark-accent touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Close modal"
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
