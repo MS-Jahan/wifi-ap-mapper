@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { APData } from '../types';
 import { UploadIcon } from './icons';
 import { sampleData } from '../sample-data';
+import HelpModal from './HelpModal';
 
 interface FileUploadProps {
   onDataLoaded: (data: APData[], error?: string) => void;
@@ -39,6 +40,7 @@ const loadPapaParse = (): Promise<void> => {
 const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded, error }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [isParsing, setIsParsing] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   const processFile = useCallback(async (file: File) => {
     if (!file || !file.type.includes('csv')) {
@@ -87,8 +89,6 @@ const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded, error }) => {
               onDataLoaded([], 'No valid data found. Check that BSSID, Latitude, and Longitude columns are present and correctly formatted.');
               return;
           }
-
-          console.log(parsedData);
           
           onDataLoaded(parsedData);
         },
@@ -136,13 +136,8 @@ const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded, error }) => {
   }, [processFile, isParsing]);
   
   const handleLoadSampleData = useCallback(() => {
-    // Process sample data to ensure it's handled identically to a parsed CSV file.
-    // This resolves inconsistencies in how coordinates were being processed.
-    console.log(sampleData);
     const processedSampleData = sampleData.map(row => ({
       ...row,
-      // Use parseFloat for 100% consistency with the CSV parsing logic.
-      // JS coerces the number to a string for parseFloat, ensuring identical handling.
       Latitude: parseFloat(row.Latitude as any),
       Longitude: parseFloat(row.Longitude as any),
     })).filter(row => row.BSSID && !isNaN(row.Latitude) && !isNaN(row.Longitude));
@@ -200,7 +195,15 @@ const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded, error }) => {
           />
         </label>
         {error && <p className="mt-4 text-sm text-destructive dark:text-dark-destructive">{error}</p>}
-        <div className="mt-6 text-center">
+         <div className="mt-4">
+            <button 
+                onClick={() => setIsHelpModalOpen(true)}
+                className="text-xs text-muted-foreground dark:text-dark-muted-foreground hover:text-primary dark:hover:text-dark-primary underline transition-colors"
+            >
+                What's the required file format?
+            </button>
+        </div>
+        <div className="mt-6 border-t border-border dark:border-dark-border pt-6 text-center">
             <p className="text-xs text-muted-foreground dark:text-dark-muted-foreground mb-2">Don't have a file?</p>
             <button
                 onClick={handleLoadSampleData}
@@ -211,6 +214,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded, error }) => {
             </button>
         </div>
       </div>
+      <HelpModal isOpen={isHelpModalOpen} onClose={() => setIsHelpModalOpen(false)} />
     </div>
   );
 };

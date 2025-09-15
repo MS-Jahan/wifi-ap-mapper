@@ -1,7 +1,6 @@
-
 import React from 'react';
 import ThemeToggle from './ThemeToggle';
-import { WifiIcon } from './icons';
+import { WifiIcon, GitHubIcon } from './icons';
 
 const Header: React.FC = () => {
   return (
@@ -13,7 +12,18 @@ const Header: React.FC = () => {
             WiFi AP Mapper
           </h1>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <a
+            href="https://github.com/MS-Jahan/wifi-ap-mapper"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full text-foreground dark:text-dark-foreground bg-secondary dark:bg-dark-secondary hover:bg-accent dark:hover:bg-dark-accent transition-colors"
+            aria-label="View source code on GitHub"
+          >
+            <GitHubIcon className="h-5 w-5" />
+          </a>
+        </div>
       </div>
     </header>
   );
