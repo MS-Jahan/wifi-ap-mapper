@@ -48,6 +48,12 @@ Optional extras are shown if present: `Date`, `WPA PSK`, `WPS PIN`.
 
 Latitude / Longitude must parse to numbers. Invalid rows are skipped.
 
+## Generating CSV Data
+
+You can generate WiFi access point CSV data using this oneshot fork:
+
+**OneShot Fork** - [GitHub Repository](https://github.com/MS-Jahan/oneshot)
+
 ## Sample Data
 
 See `sample-data.ts`. You can load it via the button. Values mimic a typical wardriving style export.
