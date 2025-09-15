@@ -1,0 +1,5 @@
+{
+  "name": "WiFi AP Mapper",
+  "description": "An interactive web application to visualize WiFi access point data from a CSV file. Users can upload a file to see APs displayed on a map and in a detailed table, with full interactivity between the two views. Features include light and dark mode.",
+  "requestFramePermissions": []
+}
