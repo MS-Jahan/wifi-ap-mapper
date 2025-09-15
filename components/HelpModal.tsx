@@ -55,6 +55,23 @@ const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
                 </pre>
             </div>
 
+            <div>
+                <h3 className="font-semibold mb-2">Generating CSV Files:</h3>
+                <p className="mb-2">You can generate CSV files in this format using this fork of OneShot:</p>
+                <a 
+                    href="https://github.com/MS-Jahan/OneShot" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
+                >
+                    https://github.com/MS-Jahan/OneShot
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                </a>
+                <p className="text-sm mt-2">This tool can scan for WiFi access points and automatically generate properly formatted CSV files with WPS PINs, WPA passwords, and GPS coordinates.</p>
+            </div>
+
             <p className="text-xs text-muted-foreground dark:text-dark-muted-foreground pt-2">Note: Ensure your latitude and longitude values are valid decimal numbers. The file must use a semicolon (;) as the delimiter, not a comma.</p>
         </div>
       </div>
